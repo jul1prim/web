@@ -1,0 +1,50 @@
+a {
+  padding: 10px;
+  background-color: aquamarine;
+  color: black;
+  display: inline-block;
+}
+
+img {
+  width: 50%;
+  min-width: 32px;
+  height: auto;
+}
+
+input {
+  margin: 4px;
+  width: 180px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 7px 24px 7px 34px;
+  margin: 4px;
+  font-style: italic;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: antiquewhite;
+  background-repeat: no-repeat;
+  background-size: 25px;
+  background-position: 6px center;
+  border: none;
+  border-radius: 4px;
+  background-color: #55b9f3;
+  box-shadow: 2px 2px 6px #489dcf, -2px -2px 6px #62d5ff;
+}
+
+button:hover {
+  background-color: #6d55f3;
+}
+
+.class1 {
+  background-image: url("chick.png");
+}
+.class2 {
+  background-image: url("orang.png");
+}
+.class3 {
+  background-image: url("ping.png");
+}
+.class4 {
+  background-image: url("shim.png");
+}
