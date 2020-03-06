@@ -1,0 +1,40 @@
+td {
+    border: 1px solid black;
+}
+
+textarea{
+    border: 1px solid black;
+}
+
+.add{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    border: 3px double rgba(136, 4, 4, 0.959);
+    padding: 3px;
+    background-color: rgb(248, 226, 226);
+    text-align: center;
+}
+
+.functions {
+    display: inline-block;
+    border: 3px double rgba(136, 4, 4, 0.959);
+    padding: 3px;
+    background-color: rgb(248, 226, 226);
+}
+
+.hidden{
+    display: none;
+}
+
+.functions>div{
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 200px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    vertical-align: auto;
+}

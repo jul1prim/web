@@ -19,10 +19,9 @@ let raw = document.location.search.substring(1).split("&")
 for (let i = 0; i < raw.length; i++) {
   let key = raw[i].split("=")[0]
   let value = raw[i].split("=")[1]
-  queriesObject[key] = value
+  queriesObject.key = value
   document.write(key, ": ", value, "<br>")
 }
-console.log(queriesObject)
 
 //2.1
 let sites = ["google.com", "vk.com", "ya.ru", "ok.ru"];
@@ -32,6 +31,7 @@ for (let i = 0; i < 4; i++) {
   anchor.innerText = "Ссылка " + (i + 1)
   document.body.appendChild(anchor)
 }
+
 //2.2
 for (let i = 0; i < 2; i++) {
   let ref = document.createElement("link")
@@ -114,14 +114,14 @@ for (let i = 0; i < 10; i++) {
     chforms.push(forms[i].name)
   };
 }
-document.write(chforms.join(","))
+document.write(chforms.join(", "))
 
 //3.3
 let types = ["checkbox", "radio", "text", "password", "file"]
 for (let i = 0; i < 10; i++) {
   for (let j = 0; j < 3; j++) {
     let field = document.createElement("input")
-    field.type = types[Math.round(Math.random(0) * 4)]
+    field.type = types[Math.round(Math.random() * 4)]
     forms[i].appendChild(field)
   }
 }
