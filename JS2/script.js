@@ -191,10 +191,9 @@ soxr.type = "submit"
 soxr.value = "Создать"
 forma.appendChild(soxr)
 forma.onsubmit = function (e) {
-    CreateTable(e.target.elements[0].value, e.target.elements[1].value)
+   CreateTable(e.target.elements[0].value, e.target.elements[1].value)
     forma.classList.add("hidden")  //присваиваем форме класс, в css делаем элементы этого класса невидимыми 
     forma.reset()
-    document.getElementsByClassName("functions")[0].classList.remove("hidden") //делаем видимым
+    document.getElementsByClassName("functions")[0].classList.remove("hidden") //делаем видимым 
     return false
 }
-
