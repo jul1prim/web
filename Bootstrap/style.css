@@ -16,3 +16,11 @@ body {
 main {
     flex-grow: 1;
 }
+
+.card {
+    width: 13rem;
+}
+
+.btn {
+    white-space: normal;
+}

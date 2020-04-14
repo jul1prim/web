@@ -3,9 +3,28 @@ function randomInteger(min, max) {  //функция рандома между m
     return Math.floor(rand);
 }
 
+function setForm(target) {  //функция создания textarea
+    target.innerHTML = ""
+    let forma = document.createElement("form")
+    target.appendChild(forma)
+    let text = document.createElement("textarea")
+    text.rows = 5
+    text.cols = 10
+    forma.appendChild(text)
+    forma.appendChild(document.createElement("br"))
+    let soxr = document.createElement("input")
+    soxr.type = "submit"
+    soxr.value = "Сохранить"
+    forma.appendChild(soxr)
+    forma.onsubmit = function (e) {
+        e.target.parentNode.innerText = e.target.elements[0].value
+        return false
+    }
+}
 
 function CreateTable(str, stb) {     //функция создания таблицы 
     let table = document.createElement("table")
+    table.classList.add("table", "table-responsive", "table-bordered")
     for (let i = 0; i <= str; i++) {
         let stroka = document.createElement("tr")
         for (let j = 0; j <= stb; j++) {
@@ -28,21 +47,7 @@ function CreateTable(str, stb) {     //функция создания табл�
                 stolbets.appendChild(bukva)
             }
             else {                        //создание поля textarea
-                let forma = document.createElement("form")
-                stolbets.appendChild(forma)
-                let text = document.createElement("textarea")
-                text.rows = 5
-                text.cols = 10
-                forma.appendChild(text)
-                forma.appendChild(document.createElement("br"))
-                let soxr = document.createElement("input")
-                soxr.type = "submit"
-                soxr.value = "Сохранить"
-                forma.appendChild(soxr)
-                forma.onsubmit = function (e) {
-                    e.target.parentNode.innerText = e.target.elements[0].value
-                    return false
-                }
+                setForm(stolbets)
             }
             table.appendChild(stroka)
         }
@@ -50,25 +55,31 @@ function CreateTable(str, stb) {     //функция создания табл�
     }
 }
 
-function CreateBlocks() {   //функция создания блока с настройками таблицы
-    let functions = document.createElement("div")
-    functions.classList.add("functions")
-    document.querySelector(".container").appendChild(functions)
-
-    let div1 = document.createElement("div") //первая кнопка
+function First(functions) {  //Функция создания 1 карточки
+    let div1 = document.createElement("div") //ПЕРВОЕ ПОЛЕ ВВОДА
+    div1.classList.add("card", "p-2", "mr-1", "mb-1")
     functions.appendChild(div1)
-    let p1 = document.createElement("p")
-    p1.innerHTML = "Изменить границы таблицы"
+
+    let h6_1 = document.createElement("h6") //1. заголовок
+    h6_1.classList.add("card-title")
+    h6_1.innerHTML = "Границы"
+    div1.appendChild(h6_1)
+
+    let p1 = document.createElement("p")  //2. текст
+    p1.classList.add("card-text")
+    p1.innerHTML = "Введите ширину и стиль границы в поля ниже."
     div1.appendChild(p1)
 
-    let shirina = document.createElement("input")
+    let shirina = document.createElement("input") //3. поля ввода
     shirina.type = "text"
     shirina.maxLength = 3
+    shirina.classList.add("form-text", "form-control")
     shirina.oninput = function () { but1.innerText = "Применить " + shirina.value + " px" + " и рамка " + variant.value }
     div1.appendChild(shirina)
 
     const border = ["none", "dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset"]
     let variant = document.createElement("select")
+    variant.classList.add("form-text", "form-control")
     div1.appendChild(variant)
     for (let i = 0; i < border.length; i++) {
         let opt = document.createElement("option")
@@ -77,60 +88,141 @@ function CreateBlocks() {   //функция создания блока с на
         variant.onchange = function () { but1.innerText = "Применить " + shirina.value + " px" + " и рамка " + variant.value }
     }
 
-    let but1 = document.createElement("button")
+    let but1 = document.createElement("button")  //4. кнопка
+    but1.classList.add("btn", "btn-secondary", "mx-auto", "mt-2")
     but1.innerText = "Применить"
     but1.onclick = function () {
         let text = but1.parentNode.querySelector("input").value
         let borderStyle = but1.parentNode.querySelector("select").value
-        document.querySelector("table").style.borderStyle = borderStyle
-        document.querySelector("table").style.width = text + "px"
+
+        if (text.search(/\D/) >= 0 || text < 1) {
+            alert("Ошибка!")
+        } else {
+            document.querySelector("table").style.borderStyle = borderStyle
+            document.querySelector("table").style.borderWidth = text + "px"
+        }
     }
     div1.appendChild(but1)
 
 
-    let div2 = document.createElement("div") //вторая кнопка
+}
+
+function Second(functions) { //Функция создания 2 карточки
+    let div2 = document.createElement("div") //ВТОРОЕ ПОЛЕ ВВОДА
+    div2.classList.add("card", "p-2", "mx-1", "mb-1")
     functions.appendChild(div2)
-    let p2 = document.createElement("p")
-    p2.innerText = "Добавить заголовок"
+
+    let h6_2 = document.createElement("h6") //1. заголовок
+    h6_2.classList.add("card-title")
+    h6_2.innerHTML = "Заголовок таблицы"
+    div2.appendChild(h6_2)
+
+    let p2 = document.createElement("p")  //2. текст
+    p2.classList.add("card-text")
+    p2.innerText = "Введите заголовок таблицы в поле ниже."
     div2.appendChild(p2)
 
-    let zag = document.createElement("input")
+    let zag = document.createElement("input") //3. поле ввода
+    zag.classList.add("form-text", "form-control")
     zag.type = "text"
     div2.appendChild(zag)
 
-    let but2 = document.createElement("button")
+    let but2 = document.createElement("button")  //4. кнопка
+    but2.classList.add("btn", "btn-secondary", "mx-auto", "mt-2")
     but2.innerText = "Добавить"
-    but2.onclick = function () { h.innerText = zag.value }
+    but2.onclick = function () { H.innerText = zag.value }
     div2.appendChild(but2)
 
+}
 
-    let div3 = document.createElement("div") //третья
+function Third(functions) { //Функция создания 3 карточки
+    let div3 = document.createElement("div") //ТРЕТЬЕ ПОЛЕ ВВОДА
+    div3.classList.add("card", "p-2", "mx-1", "mb-1")
     functions.appendChild(div3)
-    let p3 = document.createElement("p")
-    p3.innerText = "Удалить строку"
+
+
+    let h6_3 = document.createElement("h6") //1. заголовок
+    h6_3.classList.add("card-title")
+    h6_3.innerHTML = "Удаление строки"
+    div3.appendChild(h6_3)
+
+    let p3 = document.createElement("p") //2. текст
+    p3.classList.add("card-text")
+    p3.innerText = "Введите номер строки и столбца, которые хотите удалить."
     div3.appendChild(p3)
 
+
+    let divv1 = document.createElement("div") //3. поле ввода 1
+    divv1.classList.add("input-group", "mb-3")
+    div3.appendChild(divv1)
+
     let str = document.createElement("input")
+    str.classList.add("form-control")
+    str.placeholder = "Строка"
     str.type = "text"
-    div3.appendChild(str)
+    divv1.appendChild(str)
+
+    let divv2 = document.createElement("div") //4. кнопка для строки
+    divv2.classList.add("input-group-append")
+    divv1.appendChild(divv2)
 
     let but3 = document.createElement("button")
+    but3.classList.add("btn", "btn-secondary")
     but3.innerText = "Удалить"
     but3.onclick = function () {
-        if (str.value > 0 && str.value - 1 < document.getElementsByTagName("tr").length) {
-            document.getElementsByTagName("tr")[str.value - 1].remove()
+        if (str.value > 0 && str.value < document.getElementsByTagName("tr").length) {
+            document.getElementsByTagName("tr")[str.value].remove()
         } else { alert("Значение некорректно") }
     }
-    div3.appendChild(but3)
+    divv2.appendChild(but3)
 
 
-    let div4 = document.createElement("div") //четвертая
+    let divv_1 = document.createElement("div") //5. поле ввода 2
+    divv_1.classList.add("input-group", "mb-3")
+    div3.appendChild(divv_1)
+
+    let str2 = document.createElement("input")
+    str2.classList.add("form-control")
+    str2.placeholder = "Столбец"
+    str2.type = "text"
+    divv_1.appendChild(str2)
+
+    let divv_2 = document.createElement("div") //6. кнопка для столбца
+    divv_2.classList.add("input-group-append")
+    divv_1.appendChild(divv_2)
+
+    let but33 = document.createElement("button")
+    but33.classList.add("btn", "btn-secondary")
+    but33.innerText = "Удалить"
+    but33.onclick = function () {
+        if (str2.value > 0 && str2.value < document.getElementsByTagName("tr")[0].getElementsByTagName("td").length) {
+            let trs = document.getElementsByTagName("tr")
+            for (let i = 0; i < trs.length; i++) {
+                trs[i].getElementsByTagName("td")[str2.value].remove()
+            }
+        } else { alert("Значение некорректно") }
+    }
+    divv_2.appendChild(but33)
+}
+
+function Fourth(functions) {  //Функция создания 4 карточки
+    let div4 = document.createElement("div") //ЧЕТВЕРТОЕ ПОЛЕ ВВОДА
+    div4.classList.add("card", "p-2", "mx-1", "mb-1")
     functions.appendChild(div4)
-    let p4 = document.createElement("p")
-    p4.innerText = "Случайный выбор"
+
+    let h6_4 = document.createElement("h6") //1. заголовок
+    h6_4.classList.add("card-title")
+    h6_4.innerHTML = "Случайный выбор"
+    div4.appendChild(h6_4)
+
+
+    let p4 = document.createElement("p") // 2. текст
+    p4.classList.add("card-text")
+    p4.innerText = "Просто жми!"
     div4.appendChild(p4)
 
-    let but4 = document.createElement("button")
+    let but4 = document.createElement("button") //3. кнопка
+    but4.classList.add("btn", "btn-secondary")
     but4.innerText = "Magic"
     but4.onclick = function () {
         let randi = randomInteger(1, document.getElementsByTagName("tr").length - 1)
@@ -140,45 +232,52 @@ function CreateBlocks() {   //функция создания блока с на
         rand.style.color = "rgb(" + randomInteger(0, 255) + "," + randomInteger(0, 255) + "," + randomInteger(0, 255) + ")"
         rand.style.fontSize = randomInteger(15, 25) + "pt"
         if (Math.random() > 0.5) {
-            rand.innerHTML = ""
-            let forma = document.createElement("form")
-            rand.appendChild(forma)
-            let text = document.createElement("textarea")
-            text.rows = 5
-            text.cols = 10
-            forma.appendChild(text)
-            forma.appendChild(document.createElement("br"))
-            let soxr = document.createElement("input")
-            soxr.type = "submit"
-            soxr.value = "Сохранить"
-            forma.appendChild(soxr)
-            forma.onsubmit = function (e) {
-                e.target.parentNode.innerText = e.target.elements[0].value
-                return false
-            }
+            setForm(rand)
         }
     }
     div4.appendChild(but4)
+}
 
-    let div5 = document.createElement("div") //пятая
+function Fifth(functions) {  //Функция создания 4 карточки
+    let div5 = document.createElement("div") //ПЯТОЕ ПОЛЕ ВВОДА
+    div5.classList.add("card", "p-2", "mx-1", "mb-1")
     functions.appendChild(div5)
-    let p5 = document.createElement("p")
-    p5.innerText = "Удалить таблицу"
+
+    let h6_5 = document.createElement("h6") //1. заголовок
+    h6_5.classList.add("card-title")
+    h6_5.innerHTML = "Очистить таблицу"
+    div5.appendChild(h6_5)
+
+    let p5 = document.createElement("p") //2. текст
+    p5.classList.add("card-text")
+    p5.innerText = "Название говорит само за себя."
     div5.appendChild(p5)
-    let but5 = document.createElement("button")
-    but5.innerText = "Удалить"
+
+    let but5 = document.createElement("button")  //3. кнопка
+    but5.classList.add("btn", "btn-secondary")
+    but5.innerText = "Очистить"
     but5.onclick = function () {
-        document.getElementsByTagName("table")[0].remove()
-        forma.classList.remove("hidden")
         let inputs = functions.getElementsByTagName("input")
         for (let i = 0; i < inputs.length; i++) {
             inputs[i].value = ""
         };
         but1.innerText = "Применить"
-        h.innerText = ""
-        functions.classList.add("hidden")
+        H.innerText = "Без названия"
+
     }
     div5.appendChild(but5)
+}
+
+function CreateBlocks() {   //функция создания блока с настройками таблицы
+    let functions = document.createElement("div")
+    functions.classList.add("functions", "mx-1", "d-flex", "justify-content-around", "mt-3", "flex-wrap")
+    document.querySelector(".container").appendChild(functions)
+
+    First(functions)
+    Second(functions)
+    Third(functions)
+    Fourth(functions)
+    Fifth(functions)
 
     return false
 }
@@ -192,5 +291,11 @@ for (let i = 0; i < raw.length; i++) {
     mas.push(value)
 }
 
+
 CreateBlocks()                      //создаю блок настроек
+
+let H = document.createElement("h1")  //создлаю заголовок
+H.innerHTML = "Без названия"
+document.querySelector(".container").appendChild(H)
+
 CreateTable(mas[0], mas[1])          //создаю таблицу
