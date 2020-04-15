@@ -24,3 +24,41 @@ main {
 .btn {
     white-space: normal;
 }
+tr:first-child td { 
+    text-align: center;
+}
+
+tr > td {
+    width: 200px;
+    min-width: 200px;
+}
+tr > td:first-child { 
+    width: 50px; 
+    min-width: 50px;
+    text-align: center;
+}
+table.table-responsive {
+    width: auto;
+    border: none;
+}
+
+#map {
+    height: 65vh;
+    width: 80vw;
+  }
+
+.carousel-inner img {
+    height: 500px;
+    width: auto;
+  }
+
+  .car-text {
+      background-color: rgba(53, 50, 50, 0.733);
+      padding: 0 10px;
+      padding-top: 5px;
+      padding-bottom: 20px;
+  }
+
+  .hhh{
+      margin: 0;
+  }

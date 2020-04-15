@@ -1,9 +1,11 @@
+let hh1 = document.createElement("h1") //создание заголовка
+hh1.classList.add("h1","mb-5")
+hh1.innerText = "Создание таблицы"
+document.querySelector(".container").appendChild(hh1)
+
 let forma = document.createElement("form") //создание формы
 forma.classList.add("form-row", "form-group")
 document.querySelector(".container").appendChild(forma)
-
-
-
 
 let t1 = document.createElement("div") //создание div с кол-вом строк
 t1.innerText = "Количество строк в таблице:"
@@ -38,7 +40,9 @@ forma.appendChild(soxr)
 forma.onsubmit = function (e) {
     if (e.target.elements[0].value < 1 || e.target.elements[1].value < 1) {
         alert("Ошибка!")
-    } else {
+    } else if (e.target.elements[1].value > 26){
+        alert("Слишком много столбцов!")
+    } else{
         location.href = "table.html?width=" + e.target.elements[0].value + "&height=" + e.target.elements[1].value
     }
 

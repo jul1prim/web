@@ -5,14 +5,19 @@ function randomInteger(min, max) {  //функция рандома между m
 
 function setForm(target) {  //функция создания textarea
     target.innerHTML = ""
+
     let forma = document.createElement("form")
+    forma.classList.add("form-group")
     target.appendChild(forma)
+
     let text = document.createElement("textarea")
-    text.rows = 5
-    text.cols = 10
+    text.classList.add("form-control")
     forma.appendChild(text)
+
     forma.appendChild(document.createElement("br"))
+
     let soxr = document.createElement("input")
+    soxr.classList.add("btn", "btn-success","btn-sm", "px-5", "mx-auto", "mt-2")
     soxr.type = "submit"
     soxr.value = "Сохранить"
     forma.appendChild(soxr)
