@@ -17,7 +17,7 @@ function setForm(target) {  //функция создания textarea
     forma.appendChild(document.createElement("br"))
 
     let soxr = document.createElement("input")
-    soxr.classList.add("btn", "btn-success","btn-sm", "px-5", "mx-auto", "mt-2")
+    soxr.classList.add("btn", "btn-success", "btn-sm", "px-5", "mx-auto", "mt-2")
     soxr.type = "submit"
     soxr.value = "Сохранить"
     forma.appendChild(soxr)
@@ -27,7 +27,7 @@ function setForm(target) {  //функция создания textarea
     }
 }
 
-function CreateTable(str, stb) {     //функция создания таблицы 
+function CreateTable(str, stb) {    //функция создания таблицы 
     let table = document.createElement("table")
     table.classList.add("table", "table-responsive", "table-bordered")
     for (let i = 0; i <= str; i++) {
@@ -39,16 +39,18 @@ function CreateTable(str, stb) {     //функция создания табл�
             //Добавление содержимого
             let arr_EN = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
             if (j == 0 && i == 0) {  //условие нулевой строки и столбца
-                continue
+                stolbets.classList.add("tsvet")
             }
             else if (j == 0 && i !== 0) { //условие нулевого столбца(добавляем цифры)
                 let tsifra = document.createElement("p")
                 tsifra.innerHTML = i
+                stolbets.classList.add("tsvet", "shir")
                 stolbets.appendChild(tsifra)
             }
             else if (i == 0 && j !== 0) { //условие нулевой строки (добавляем буквы)
                 let bukva = document.createElement("p")
                 bukva.innerHTML = arr_EN[j - 1]
+                stolbets.classList.add("tsvet")
                 stolbets.appendChild(bukva)
             }
             else {                        //создание поля textarea
@@ -94,7 +96,7 @@ function First(functions) {  //Функция создания 1 карточк�
     }
 
     let but1 = document.createElement("button")  //4. кнопка
-    but1.classList.add("btn", "btn-secondary", "mx-auto", "mt-2")
+    but1.classList.add("knopka", "btn", "btn-secondary", "mx-auto", "mt-2")
     but1.innerText = "Применить"
     but1.onclick = function () {
         let text = but1.parentNode.querySelector("input").value
@@ -266,9 +268,18 @@ function Fifth(functions) {  //Функция создания 4 карточк�
         for (let i = 0; i < inputs.length; i++) {
             inputs[i].value = ""
         };
-        but1.innerText = "Применить"
-        H.innerText = "Без названия"
 
+        H.innerText = "Без названия"
+        document.getElementsByClassName("knopka")[0].innerHTML = "Применить"
+
+        let trs = document.getElementsByTagName("tr")
+
+        for (let i = 1; i < trs.length; i++) {
+            let tds = trs[i].getElementsByTagName("td")
+            for (let j = 1; j < tds.length; j++) {
+                setForm(tds[j])
+            }
+        }
     }
     div5.appendChild(but5)
 }

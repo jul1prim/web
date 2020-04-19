@@ -53,7 +53,7 @@ table.table-responsive {
   }
 
   .car-text {
-      background-color: rgba(53, 50, 50, 0.733);
+      background-color: rgba(73, 72, 72, 0.733);
       padding: 0 10px;
       padding-top: 5px;
       padding-bottom: 20px;
@@ -61,4 +61,14 @@ table.table-responsive {
 
   .hhh{
       margin: 0;
+  }
+
+  .tsvet{
+    background-color: rgba(114, 112, 112, 0.733);
+    color: rgb(238, 238, 238);
+    font-weight: bold;
+  }
+
+  .shir{
+      height: 166px;
   }
