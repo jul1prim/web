@@ -277,6 +277,10 @@ function Fifth(functions) {  //Функция создания 4 карточк�
         for (let i = 1; i < trs.length; i++) {
             let tds = trs[i].getElementsByTagName("td")
             for (let j = 1; j < tds.length; j++) {
+                tds[j].style.backgroundColor = "white"
+                tds[j].style.color = "black"
+                tds[j].style.fontSize = "inherit"
+                document.querySelector("table").style.border = "none"
                 setForm(tds[j])
             }
         }
